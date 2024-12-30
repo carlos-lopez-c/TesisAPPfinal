@@ -1,0 +1,1 @@
+ F:\\APP\ TESIS\\HC-app-1\\h_c_1\\.dart_tool\\flutter_build\\1f0d464d8974a6ffb7a09f0cca687166\\native_assets.yaml: 

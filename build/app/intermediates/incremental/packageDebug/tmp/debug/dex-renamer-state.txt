@@ -1,0 +1,13 @@
+#Mon Dec 30 12:38:41 ECT 2024
+base.0=F\:\\APP TESIS\\HC-app-1\\h_c_1\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=F\:\\APP TESIS\\HC-app-1\\h_c_1\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=F\:\\APP TESIS\\HC-app-1\\h_c_1\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.3=F\:\\APP TESIS\\HC-app-1\\h_c_1\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+path.0=classes.dex
+path.1=0/classes.dex
+path.2=1/classes.dex
+path.3=5/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex
+renamed.3=classes4.dex
