@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:h_c_1/hc_ps/presentation/screens/hc_adult_screen.dart';
+import '/hc_ps/presentation/screens/hc_adult_screen.dart';
 import '/shared/header.dart';
 import 'hc_ninos_screen.dart';
 

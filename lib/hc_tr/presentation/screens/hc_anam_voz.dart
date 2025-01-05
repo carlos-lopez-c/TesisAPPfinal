@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:h_c_1/hc_tr/presentation/screens/search_hc_TR_VOZ.dart';
-import 'package:h_c_1/hc_tr/presentation/widgets/NavigationButton.dart';
-import 'package:h_c_1/hc_tr/presentation/widgets/headerTR.dart';
+import '/hc_tr/presentation/screens/search_hc_TR_VOZ.dart';
+import '/hc_tr/presentation/widgets/NavigationButton.dart';
+import '/hc_tr/presentation/widgets/headerTR.dart';
 
 class HcTrAnamVoz extends StatelessWidget {
   @override

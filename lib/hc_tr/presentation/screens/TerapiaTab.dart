@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:h_c_1/hc_tr/presentation/screens/hc_anam_adult.dart';
-import 'package:h_c_1/hc_tr/presentation/screens/hc_anam_voz.dart';
-import 'package:h_c_1/hc_tr/presentation/screens/hc_general_screen.dart';
+import '/hc_tr/presentation/screens/hc_anam_adult.dart';
+import '/hc_tr/presentation/screens/hc_anam_voz.dart';
+import '/hc_tr/presentation/screens/hc_general_screen.dart';
 import '/shared/header.dart';
 // import 'hc_ninos_screen.dart';
 

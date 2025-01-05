@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:h_c_1/hc_ps/presentation/screens/search_hc_ps_adults.dart';
+import '/hc_ps/presentation/screens/search_hc_ps_adults.dart';
 import '../widgets/headerPS.dart';
 
 class HistoriaClinicaAdultPS extends StatelessWidget {

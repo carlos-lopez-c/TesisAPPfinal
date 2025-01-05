@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:h_c_1/hc_tr/presentation/widgets/headerBusqueda.dart';
+import '/hc_tr/presentation/widgets/headerBusqueda.dart';
 
 class SearchHcTrAa extends StatelessWidget {
   @override

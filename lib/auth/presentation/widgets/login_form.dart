@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:h_c_1/hc_ps/presentation/screens/PsicologiaTab.dart';
+import 'package:h_c_1/citas_medicTR/presentation/screens/ListaCitasTR.dart';
+// import '/hc_ps/presentation/screens/PsicologiaTab.dart';
+//import 'package:h_c_1/citas_medicPS/presentation/screens/ListaCitas.dart';
 
 // import 'package:h_c_1/hc_tr/presentation/screens/TerapiaTab.dart';
 // import 'package:h_c_1/home/presentation/screens/HomeScreen.dart';
@@ -103,8 +105,10 @@ class LoginForm extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PsicologiaTab(),
+                          builder: (context) => ListaCitasTR(),
+                          //para citas PS ListaCitas
                           //para terapia >> Terapiatab
+                          //para psicologia >> PsicologiaTab
                         ),
                       );
                       // if (_formKey.currentState?.validate() ?? false) {

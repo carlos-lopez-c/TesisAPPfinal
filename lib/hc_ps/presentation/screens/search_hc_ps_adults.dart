@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:h_c_1/hc_ps/presentation/widgets/headerBusqueda.dart';
+import '/hc_ps/presentation/widgets/headerBusqueda.dart';
 
 class BusquedaPsA extends StatelessWidget {
   const BusquedaPsA({Key? key}) : super(key: key);
