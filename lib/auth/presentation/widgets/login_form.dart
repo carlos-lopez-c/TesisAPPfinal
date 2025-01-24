@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:h_c_1/auth/presentation/providers/login_provider.dart';
 import 'package:h_c_1/citas_medicTR/presentation/screens/ListaCitasTR.dart';
 // import '/hc_ps/presentation/screens/PsicologiaTab.dart';
 //import 'package:h_c_1/citas_medicPS/presentation/screens/ListaCitas.dart';
@@ -6,9 +8,10 @@ import 'package:h_c_1/citas_medicTR/presentation/screens/ListaCitasTR.dart';
 // import 'package:h_c_1/hc_tr/presentation/screens/TerapiaTab.dart';
 // import 'package:h_c_1/home/presentation/screens/HomeScreen.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loginForm = ref.watch(formularioProvider);
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Form(
@@ -17,8 +20,19 @@ class LoginForm extends StatelessWidget {
           children: [
             // Campo de correo electrónico
             TextFormField(
+              onChanged: ref.read(formularioProvider.notifier).onEmailChanged,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
+                errorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),
+                focusedErrorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),
+                errorStyle: const TextStyle(color: Colors.red),
+                errorText: loginForm.isFormPosted
+                    ? loginForm.email.errorMessage
+                    : null,
                 labelText: 'Correo Electrónico',
                 labelStyle: const TextStyle(
                     color: Colors.lightBlue), // Etiqueta celeste
@@ -37,37 +51,29 @@ class LoginForm extends StatelessWidget {
               ),
               style: const TextStyle(
                   color: Colors.black), // Texto ingresado de color negro
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Por favor, ingrese su correo.';
-                } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                  return 'Por favor, ingrese un correo válido.';
-                }
-                return null;
-              },
             ),
 
             const SizedBox(height: 16),
 
             // Campo de contraseña con el ícono de ojo
             TextFormField(
+              onChanged:
+                  ref.read(formularioProvider.notifier).onPasswordChanged,
               decoration: InputDecoration(
+                errorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),
+                focusedErrorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),
+                errorText: loginForm.isFormPosted
+                    ? loginForm.password.errorMessage
+                    : null,
                 labelText: 'Contraseña',
                 labelStyle: const TextStyle(
                     color: Colors.lightBlue), // Etiqueta celeste
                 prefixIcon: const Icon(Icons.lock,
                     color: Colors.lightBlue), // Ícono celeste
-                // suffixIcon: IconButton(
-                //   // icon: Icon(
-                //   //   // _isObscure ? Icons.visibility : Icons.visibility_off,
-                //   //   // color: Colors.grey,
-                //   // ),
-                //   onPressed: () {
-                //     setState(() {
-                //       _isObscure = !_isObscure; // Alterna visibilidad
-                //     });
-                //   },
-                // ),
                 enabledBorder: UnderlineInputBorder(
                   borderSide:
                       BorderSide(color: Colors.lightBlue), // Línea celeste
@@ -102,15 +108,11 @@ class LoginForm extends StatelessWidget {
 
                   child: OutlinedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ListaCitasTR(),
-                          //para citas PS ListaCitas
-                          //para terapia >> Terapiatab
-                          //para psicologia >> PsicologiaTab
-                        ),
-                      );
+                      loginForm.isPosting
+                          ? null
+                          : ref
+                              .read(formularioProvider.notifier)
+                              .onFormSubmit();
                       // if (_formKey.currentState?.validate() ?? false) {
                       //   final email = _emailController.text.trim();
                       //   final password = _passwordController.text.trim();

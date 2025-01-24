@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'auth/presentation/screens/login_screen.dart';
-import 'auth/presentation/screens/forward_password.dart';
+import 'package:h_c_1/config/constants/enviroments.dart';
+import 'package:h_c_1/config/routes/app_routes.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  await Environment.initEnvironment();
+  runApp(const ProviderScope(child: MyApp()));
 }
-
-class MyApp extends StatelessWidget {
+ 
+class MyApp extends ConsumerWidget {
+  const MyApp({super.key});
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Historias Clínicas',
-      initialRoute: '/login',
-      routes: {
-        '/login': (context) => LoginScreen(),
-        '/forgot-password': (context) => ForgotPasswordScreen(),
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appRouter = ref.watch(goRouterProvider);
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: appRouter,
     );
   }
 }

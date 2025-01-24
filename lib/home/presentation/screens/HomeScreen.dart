@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                 const Text(
                   'al sistema de gestión de citas e historias clínicas',
                   style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 14,
                       color: Colors.blueAccent,
                       fontWeight: FontWeight.bold),
                 ),
@@ -86,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                 Text(
                   'Carlos Eduardo López Candelejo',
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 14,
                     color: Colors.blueAccent,
                     fontWeight: FontWeight.bold,
                   ),
