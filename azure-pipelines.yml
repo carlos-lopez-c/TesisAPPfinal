@@ -5,9 +5,12 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-- task: UseFlutterVersion@0
-  inputs:
-    version: 'latest'
+- script: |
+    git clone https://github.com/flutter/flutter.git -b stable --depth 1
+    echo "##vso[task.setvariable variable=FLUTTER_HOME]$(pwd)/flutter"
+    echo "##vso[task.prependpath]$(pwd)/flutter/bin"
+    flutter doctor
+  displayName: 'Install Flutter'
 
 - script: flutter pub get
   displayName: 'Install dependencies'
@@ -33,7 +36,7 @@ steps:
     artifactName: 'apk'
   displayName: 'Publish APK Artifact'
 
-- task: OWASPDependencyCheck@5
-  inputs:
-    projectName: 'TesisAPPfinal'
-    scanPath: '$(Build.SourcesDirectory)'
+- script: |
+    curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
+    ./trivy fs --scanners vuln $(Build.SourcesDirectory)
+  displayName: 'Run Trivy Vulnerability Scan'
