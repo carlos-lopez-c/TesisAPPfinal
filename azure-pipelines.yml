@@ -1,0 +1,39 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'macos-latest'
+
+steps:
+- task: UseFlutterVersion@0
+  inputs:
+    version: 'latest'
+
+- script: flutter pub get
+  displayName: 'Install dependencies'
+
+- script: flutter analyze
+  displayName: 'Static Code Analysis'
+
+- script: flutter test
+  displayName: 'Run Unit Tests'
+
+- script: flutter build apk --release
+  displayName: 'Build APK'
+
+- task: CopyFiles@2
+  inputs:
+    contents: 'build/app/outputs/flutter-apk/app-release.apk'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Copy APK to Artifact Staging'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'apk'
+  displayName: 'Publish APK Artifact'
+
+- task: OWASPDependencyCheck@5
+  inputs:
+    projectName: 'TesisAPPfinal'
+    scanPath: '$(Build.SourcesDirectory)'
