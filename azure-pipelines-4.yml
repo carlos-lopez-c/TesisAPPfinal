@@ -14,20 +14,20 @@ steps:
 - script: flutter pub get
   displayName: 'Install dependencies'
 
-- script: flutter build apk --release --output-dir=build/apkfile
+- script: flutter build apk --release
   displayName: 'Build APK'
+
+- script: mkdir build\apkfile && move build\app\outputs\flutter-apk\app-release.apk build\apkfile\funesami.apk
+  displayName: 'Move and Rename APK'
 
 - script: dir build\apkfile
   displayName: 'List APK Directory'
 
 - task: CopyFiles@2
   inputs:
-    contents: 'build/apkfile/app-release.apk'
+    contents: 'build/apkfile/funesami.apk'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
   displayName: 'Copy APK to Artifact Staging'
-
-- script: rename $(Build.ArtifactStagingDirectory)\app-release.apk $(Build.ArtifactStagingDirectory)\funesami.apk
-  displayName: 'Rename APK'
 
 - task: PublishBuildArtifacts@1
   inputs:
