@@ -17,9 +17,12 @@ steps:
 - script: flutter build apk --release
   displayName: 'Build APK'
 
+- script: dir build\app\outputs\flutter-apk
+  displayName: 'List APK Directory'
+
 - task: CopyFiles@2
   inputs:
-    contents: 'build/app/outputs/flutter-apk/FUNESAMI.apk'
+    contents: 'build/app/outputs/flutter-apk/app-release.apk'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
   displayName: 'Copy APK to Artifact Staging'
 
