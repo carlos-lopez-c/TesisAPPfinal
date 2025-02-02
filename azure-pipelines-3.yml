@@ -19,7 +19,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    contents: 'build/app/outputs/flutter-apk/app-release.apk'
+    contents: 'build/app/outputs/flutter-apk/FUNESAMI.apk'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
   displayName: 'Copy APK to Artifact Staging'
 
