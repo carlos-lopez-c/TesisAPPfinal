@@ -1,5 +1,5 @@
 trigger:
-- main
+  - main
 
 pool:
   name: 'Default'  # Usa el nombre del pool que configuraste
@@ -16,7 +16,7 @@ steps:
 
 - script: |
     flutter analyze || echo "Lint warnings found, but continuing..."
-  continueOnError: true
+  continueOnError: true  # Esto permite continuar a pesar de los errores de lint
   displayName: 'Static Code Analysis'
 
 - script: flutter test
