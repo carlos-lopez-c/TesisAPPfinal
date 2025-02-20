@@ -133,25 +133,39 @@ class HorarioCitasTr extends ConsumerWidget {
             ),
             calendarBuilders: CalendarBuilders(
               defaultBuilder: (context, day, focusedDay) {
-                if (_isCitaAsignada(day)) {
-                  return Center(
-                    child: Container(
-                      width: 24.0,
-                      height: 24.0,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Text(
-                          '${day.day}',
-                          style: TextStyle(color: Colors.white, fontSize: 12.0),
-                        ),
-                      ),
-                    ),
-                  );
+                final citasDelDia = appointmentState.citas.where((cita) {
+                  try {
+                    final citaDate =
+                        DateFormat('MMMM d, y', 'en_US').parse(cita.date);
+                    return isSameDay(day, citaDate);
+                  } catch (_) {
+                    return false;
+                  }
+                }).toList();
+                Color? backgroundColor;
+                if (citasDelDia.any((cita) => cita.status == 'Agendado')) {
+                  backgroundColor = Colors.green; // Agendado
+                } else if (citasDelDia
+                    .any((cita) => cita.status == 'Pendiente')) {
+                  backgroundColor = Colors.orange; // Pendiente
                 }
-                return null;
+                return Container(
+                  margin: const EdgeInsets.all(4),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: backgroundColor ?? Colors.transparent,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Text(
+                    '${day.day}',
+                    style: TextStyle(
+                      color: backgroundColor != null
+                          ? Colors.white
+                          : Colors.black87,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                );
               },
             ),
           ),
