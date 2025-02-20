@@ -21,14 +21,15 @@ class ChangePasswordScreen extends ConsumerWidget {
           ),
 
           TextField(
-            keyboardType: TextInputType.emailAddress,
-            onChanged: forgotPasswordNotifier.onCodeChanged,
+            keyboardType: TextInputType.visiblePassword,
+            obscureText: true,
+            onChanged: forgotPasswordNotifier.onNewPasswordChanged,
             decoration: InputDecoration(
               labelText: 'Nueva Contraseña',
               labelStyle:
                   const TextStyle(color: Colors.lightBlue), // Etiqueta celeste
               hintText: '123456',
-              prefixIcon: const Icon(Icons.email,
+              prefixIcon: const Icon(Icons.password_outlined,
                   color: Colors.lightBlue), // Ícono celeste
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(
@@ -47,14 +48,15 @@ class ChangePasswordScreen extends ConsumerWidget {
 
           const SizedBox(height: 16),
           TextField(
-            keyboardType: TextInputType.emailAddress,
-            onChanged: forgotPasswordNotifier.onCodeChanged,
+            keyboardType: TextInputType.visiblePassword,
+            obscureText: true,
+            onChanged: forgotPasswordNotifier.onNewPasswordChanged,
             decoration: InputDecoration(
               labelText: 'Confirmar Contraseña',
               labelStyle:
                   const TextStyle(color: Colors.lightBlue), // Etiqueta celeste
               hintText: '123456',
-              prefixIcon: const Icon(Icons.email,
+              prefixIcon: const Icon(Icons.password,
                   color: Colors.lightBlue), // Ícono celeste
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(
@@ -83,7 +85,7 @@ class ChangePasswordScreen extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(30), // Bordes redondeados
                 child: ElevatedButton(
                   onPressed: () {
-                    forgotPasswordNotifier.verifyCode();
+                    forgotPasswordNotifier.resetPassword();
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: const Color.fromARGB(255, 4, 71, 103),

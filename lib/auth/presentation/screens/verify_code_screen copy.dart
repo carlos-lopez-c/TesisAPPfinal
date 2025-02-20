@@ -28,7 +28,7 @@ class VerifyCodeScreen extends ConsumerWidget {
               labelStyle:
                   const TextStyle(color: Colors.lightBlue), // Etiqueta celeste
               hintText: '123456',
-              prefixIcon: const Icon(Icons.email,
+              prefixIcon: const Icon(Icons.key,
                   color: Colors.lightBlue), // Ícono celeste
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(

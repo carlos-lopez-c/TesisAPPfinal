@@ -68,6 +68,7 @@ class AuthDatasourceImpl implements AuthDatasource {
   Future<void> resetPassword(
       String email, String token, String newPassword) async {
     try {
+      print("email: $email, token: $token, newPassword: $newPassword");
       final response =
           await dio.patch('/auth/update-password-with-email', data: {
         'email': email,
