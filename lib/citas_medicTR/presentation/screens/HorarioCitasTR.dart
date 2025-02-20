@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:h_c_1/citas_medicTR/domain/entities/cita.entity.dart';
+import 'package:h_c_1/citas_medicTR/presentation/providers/appointments_provider.dart';
 import 'package:h_c_1/citas_medicTR/presentation/screens/GenerarCitasTR.dart';
 import 'package:h_c_1/citas_medicTR/presentation/widgets/NavigationButtonCT_TR.dart';
 import 'package:h_c_1/citas_medicTR/presentation/widgets/headerCT_TR.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:intl/intl.dart';
 
-class HorarioCitasTr extends StatelessWidget {
+class HorarioCitasTr extends ConsumerWidget {
   final DateTime _focusedDay = DateTime.now();
   final DateTime? _selectedDay = null;
 
@@ -22,12 +26,12 @@ class HorarioCitasTr extends StatelessWidget {
         isSameDay(cita['fecha'], day) && cita['estado'] == 'pendiente');
   }
 
-  void _editarCita(BuildContext context, Map<String, dynamic> cita) {
+  void _editarCita(BuildContext context, Appointments cita) {
     TextEditingController areaController =
-        TextEditingController(text: cita['area']);
+        TextEditingController(text: cita.specialtyTherapy);
     TextEditingController horaController =
-        TextEditingController(text: cita['hora']);
-    DateTime? selectedDate = cita['fecha'];
+        TextEditingController(text: cita.appointmentTime);
+    DateTime? selectedDate = DateFormat('MMMM d, y', 'en_US').parse(cita.date);
 
     showDialog(
       context: context,
@@ -70,9 +74,9 @@ class HorarioCitasTr extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                cita['area'] = areaController.text;
-                cita['hora'] = horaController.text;
-                cita['fecha'] = selectedDate ?? cita['fecha'];
+                // cita['area'] = areaController.text;
+                // cita['hora'] = horaController.text;
+                // cita['fecha'] = selectedDate ?? cita['fecha'];
                 Navigator.pop(context);
               },
               child: Text('Guardar'),
@@ -84,7 +88,11 @@ class HorarioCitasTr extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appointmentState = ref.watch(appointmentProvider);
+    final notifier = ref.read(appointmentProvider.notifier);
+
+    final selectedDate = appointmentState.calendarioCitaSeleccionada;
     return Scaffold(
       appBar: AppBar(
         title: Text('Horario de Citas'),
@@ -104,12 +112,14 @@ class HorarioCitasTr extends StatelessWidget {
           SizedBox(height: 20),
           Divider(),
           TableCalendar(
+            availableGestures: AvailableGestures.all,
+            locale: "es_EC",
             firstDay: DateTime.utc(2025, 1, 1),
             lastDay: DateTime.utc(2025, 12, 31),
-            focusedDay: _focusedDay,
-            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+            focusedDay: selectedDate,
+            selectedDayPredicate: (day) => isSameDay(day, selectedDate),
             onDaySelected: (selectedDay, focusedDay) {
-              // Lógica de selección de día sin estado
+              notifier.onDateSelected(selectedDay);
             },
             calendarStyle: CalendarStyle(
               todayDecoration: BoxDecoration(
@@ -148,16 +158,11 @@ class HorarioCitasTr extends StatelessWidget {
           Divider(),
           Expanded(
             child: ListView(
-              children: citas
-                  .where((cita) =>
-                      cita['estado'] == 'aceptado' &&
-                      isSameDay(cita['fecha'], _selectedDay))
-                  .map((cita) {
+              children: appointmentState.citas.map((cita) {
                 return ListTile(
                   leading: Icon(Icons.event_available, color: Colors.green),
-                  title: Text('${cita['area']}'),
-                  subtitle:
-                      Text('${cita['fecha'].toLocal()} a las ${cita['hora']}'),
+                  title: Text('${cita.specialtyTherapy}'),
+                  subtitle: Text('${cita.date} a las ${cita.appointmentTime}'),
                   onTap: () => _editarCita(context, cita),
                 );
               }).toList(),

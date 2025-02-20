@@ -9,13 +9,12 @@ class Terapiatab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Area de Terapias')),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 120),
+            SizedBox(height: 90),
             Header(
               imagePath: 'assets/imagenes/san-miguel.png',
               title: 'Fundación de niños especiales',
@@ -37,14 +36,14 @@ class Terapiatab extends StatelessWidget {
                     children: [
                       Image.asset(
                         'assets/imagenes/historia-clinica.png',
-                        width: 140,
-                        height: 150,
+                        width: 120,
+                        height: 130,
                       ),
                       SizedBox(height: 10),
                       Text(
                         'Historia Clínica General',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 14),
+                            fontWeight: FontWeight.bold, fontSize: 12),
                       ),
                     ],
                   ),
@@ -61,14 +60,14 @@ class Terapiatab extends StatelessWidget {
                     children: [
                       Image.asset(
                         'assets/imagenes/adult.png',
-                        width: 140,
-                        height: 150,
+                        width: 120,
+                        height: 130,
                       ),
                       SizedBox(height: 10),
                       Text(
                         'Anamnesis Alimentaria Adultos',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 14),
+                            fontWeight: FontWeight.bold, fontSize: 12),
                       ),
                     ],
                   ),
@@ -90,14 +89,14 @@ class Terapiatab extends StatelessWidget {
                     children: [
                       Image.asset(
                         'assets/imagenes/voz.png',
-                        width: 140,
-                        height: 150,
+                        width: 120,
+                        height: 130,
                       ),
                       SizedBox(height: 10),
                       Text(
                         'Anamnesis de voz',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 14),
+                            fontWeight: FontWeight.bold, fontSize: 13),
                       ),
                     ],
                   ),

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:h_c_1/hc_ps/presentation/providers/hc_ps_form_provider.dart';
 import '/hc_ps/presentation/screens/search_hc_ps_adults.dart';
 import '../widgets/headerPS.dart';
 
-class HistoriaClinicaAdultPS extends StatelessWidget {
+class HistoriaClinicaAdultPS extends ConsumerWidget {
   final _formKey = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hcState = ref.watch(hcPsAdultFormProvider);
+    final hcNotifier = ref.read(hcPsAdultFormProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Area de psicologia'),
+        title: const Text('Área de Psicología'),
       ),
       body: Form(
         key: _formKey,
@@ -38,313 +43,138 @@ class HistoriaClinicaAdultPS extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    'BUSCAR HISTORIA CLINICA',
+                    'BUSCAR HISTORIA CLÍNICA',
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
               ),
               const SizedBox(height: 25),
-              const Text(
-                '1.- DATOS PERSONALES:',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              _buildSection('1.- DATOS PERSONALES:'),
+              _buildFormField(
+                label: 'Nombres y Apellidos',
+                initialValue: hcState.createHcPsAdult.nombreCompleto,
+                onChanged: hcNotifier.setNombreCompleto,
+                validator: (value) => _validateRequired(value),
               ),
-              const SizedBox(height: 10),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Nombres y Apellidos',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+              _buildFormField(
+                label: 'Fecha de Nacimiento (AAAA-MM-DD)',
+                initialValue:
+                    hcState.createHcPsAdult.fechaNacimiento.toString(),
+                onChanged: (value) => hcNotifier.setFechaNacimiento(
+                    DateTime.tryParse(value) ?? DateTime.now()),
+                validator: (value) => _validateDate(value),
               ),
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Fecha de Nacimiento',
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Por favor llene este campo';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Edad',
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Por favor llene este campo';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                ],
+              _buildFormField(
+                label: 'Teléfono',
+                initialValue: hcState.createHcPsAdult.telefono,
+                onChanged: hcNotifier.setTelefono,
+                keyboardType: TextInputType.phone,
+                validator: (value) => _validatePhone(value),
               ),
-              const SizedBox(height: 10),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Curso Escolar Actual',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+              _buildFormField(
+                label: 'Curso Escolar Actual',
+                initialValue: hcState.createHcPsAdult.curso,
+                onChanged: hcNotifier.setCurso,
+                validator: (value) => _validateRequired(value),
               ),
-              const SizedBox(height: 10),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Institución',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+              _buildFormField(
+                label: 'Institución',
+                initialValue: hcState.createHcPsAdult.institucion,
+                onChanged: hcNotifier.setInstitucion,
+                validator: (value) => _validateRequired(value),
               ),
-              const SizedBox(height: 10),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Dirección',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+              _buildFormField(
+                label: 'Dirección',
+                initialValue: hcState.createHcPsAdult.direccion,
+                onChanged: hcNotifier.setDireccion,
+                validator: (value) => _validateRequired(value),
               ),
-              const SizedBox(height: 10),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Teléfono',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+              _buildFormField(
+                label: 'Remisión',
+                initialValue: hcState.createHcPsAdult.remision,
+                onChanged: hcNotifier.setRemision,
+                validator: (value) => _validateRequired(value),
               ),
-              const SizedBox(height: 10),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Remisión',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+              _buildFormField(
+                label: 'Fecha de Evaluación (AAAA-MM-DD)',
+                initialValue: hcState.createHcPsAdult.fechaEvalucion.toString(),
+                onChanged: (value) => hcNotifier.setFechaEvaluacion(
+                    DateTime.tryParse(value) ?? DateTime.now()),
+                validator: (value) => _validateDate(value),
               ),
-              const SizedBox(height: 10),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Fecha de Evaluación',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+              _buildFormField(
+                label: 'Final de Cobertura',
+                initialValue: hcState.createHcPsAdult.cobertura,
+                onChanged: hcNotifier.setCobertura,
+                validator: (value) => _validateRequired(value),
               ),
-              const SizedBox(height: 10),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Final de Cobertura',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
+              _buildFormField(
+                label: 'Observaciones',
+                initialValue: hcState.createHcPsAdult.observaciones,
+                onChanged: hcNotifier.setObservaciones,
                 maxLines: 3,
-                decoration: const InputDecoration(
-                  labelText: 'Observaciones',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+                validator: (value) => _validateRequired(value),
               ),
-              const SizedBox(height: 10),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Responsable',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+              _buildFormField(
+                label: 'Responsable',
+                initialValue: hcState.createHcPsAdult.responsable,
+                onChanged: hcNotifier.setResponsable,
+                validator: (value) => _validateRequired(value),
               ),
               const SizedBox(height: 20),
-              const Text(
-                '2.- MOTIVO DE CONSULTA:',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
+              _buildSection('2.- MOTIVO DE CONSULTA:'),
+              _buildFormField(
+                label: 'Describa el motivo de la consulta',
+                initialValue: hcState.createHcPsAdult.motivoConsulta,
+                onChanged: hcNotifier.setMotivoConsulta,
                 maxLines: 3,
-                decoration: const InputDecoration(
-                  labelText: 'Describa el motivo de la consulta',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+                validator: (value) => _validateRequired(value),
               ),
               const SizedBox(height: 20),
-              const Text(
-                '3.- DESENCADENANTES DE MOTIVO DE CONSULTA:',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
+              _buildSection('3.- DESENCADENANTES DE MOTIVO DE CONSULTA:'),
+              _buildFormField(
+                label: 'Describa los desencadenantes',
+                initialValue:
+                    hcState.createHcPsAdult.desencadenantesMotivoConsulta,
+                onChanged: hcNotifier.setDesencadenantesMotivoConsulta,
                 maxLines: 3,
-                decoration: const InputDecoration(
-                  labelText: 'Describa los desencadenantes',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+                validator: (value) => _validateRequired(value),
               ),
               const SizedBox(height: 20),
-              const Text(
-                '4.- ANTECEDENTES FAMILIARES:',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
+              _buildSection('4.- ANTECEDENTES FAMILIARES:'),
+              _buildFormField(
+                label: 'Describa los antecedentes familiares',
+                initialValue: hcState.createHcPsAdult.antecedenteFamiliares,
+                onChanged: hcNotifier.setAntecedenteFamiliares,
                 maxLines: 4,
-                decoration: const InputDecoration(
-                  labelText: 'Describa los antecedentes......................',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+                validator: (value) => _validateRequired(value),
               ),
               const SizedBox(height: 20),
-              const Text(
-                '5.- ANTECEDENTES Y ESTRUCTURA FAMILIAR:',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
+              _buildSection('5.- PRUEBAS APLICADAS:'),
+              _buildFormField(
+                label: 'Describa las pruebas aplicadas',
+                initialValue: hcState.createHcPsAdult.pruebasAplicadas,
+                onChanged: hcNotifier.setPruebasAplicadas,
                 maxLines: 3,
-                decoration: const InputDecoration(
-                  labelText: 'Describa los antecedentes y estructura familiar.',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+                validator: (value) => _validateRequired(value),
               ),
               const SizedBox(height: 20),
-              const Text(
-                '6.- PRUEBAS APLICADAS:',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
+              _buildSection('6.- IMPRESIÓN DIAGNÓSTICA:'),
+              _buildFormField(
+                label: 'Describa la impresión diagnóstica',
+                initialValue: hcState.createHcPsAdult.impresionDiagnostica,
+                onChanged: hcNotifier.setImpresionDiagnostica,
                 maxLines: 3,
-                decoration: const InputDecoration(
-                  labelText: 'Describa las pruebas aplicadas.',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+                validator: (value) => _validateRequired(value),
               ),
               const SizedBox(height: 20),
-              const Text(
-                '7.- IMPRESIÓN DIAGNÓSTICA:',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
+              _buildSection('7.- ÁREAS DE INTERVENCIÓN:'),
+              _buildFormField(
+                label: 'Describa las áreas de intervención',
+                initialValue: hcState.createHcPsAdult.areasIntervecion,
+                onChanged: hcNotifier.setAreasIntervencion,
                 maxLines: 3,
-                decoration: const InputDecoration(
-                  labelText: 'Describa la impresión diagnóstica.',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                '8.- ÁREAS DE INTERVENCIÓN:',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                maxLines: 3,
-                decoration: const InputDecoration(
-                  labelText: 'Describa las areas de intervención.',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor llene este campo';
-                  }
-                  return null;
-                },
+                validator: (value) => _validateRequired(value),
               ),
             ],
           ),
@@ -362,4 +192,47 @@ class HistoriaClinicaAdultPS extends StatelessWidget {
       ),
     );
   }
+
+  // 🔹 Sección con título estilizado
+  Widget _buildSection(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Text(title,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
+    );
+  }
+
+  // 🔹 Campo de texto conectado al estado
+  Widget _buildFormField({
+    required String label,
+    required String initialValue,
+    required Function(String) onChanged,
+    int maxLines = 1,
+    TextInputType keyboardType = TextInputType.text,
+    String? Function(String?)? validator,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: TextFormField(
+        initialValue: initialValue,
+        onChanged: onChanged,
+        maxLines: maxLines,
+        keyboardType: keyboardType,
+        decoration: InputDecoration(
+          labelText: label,
+          border: OutlineInputBorder(),
+        ),
+        validator: validator,
+      ),
+    );
+  }
+
+  String? _validateRequired(String? value) =>
+      (value == null || value.isEmpty) ? 'Este campo es obligatorio' : null;
+
+  String? _validateDate(String? value) =>
+      DateTime.tryParse(value ?? '') == null ? 'Fecha inválida' : null;
+
+  String? _validatePhone(String? value) =>
+      (value == null || value.length < 7) ? 'Número inválido' : null;
 }

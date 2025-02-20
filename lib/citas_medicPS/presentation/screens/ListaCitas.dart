@@ -21,14 +21,7 @@ class ListaCitas extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Área de Psicología'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
+          title: Text('Área de Psicologia'), automaticallyImplyLeading: false),
       body: Column(
         children: [
           const SizedBox(height: 20),

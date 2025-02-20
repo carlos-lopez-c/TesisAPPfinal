@@ -1,217 +1,495 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:h_c_1/hc_tr/presentation/providers/hc_form_adult_provider.dart';
 import '/hc_tr/presentation/screens/search_hc_TR_AA.dart';
 import '/hc_tr/presentation/widgets/NavigationButton.dart';
 import '/hc_tr/presentation/widgets/headerTR.dart';
 
-class HcTrAnamAdult extends StatelessWidget {
+class HcTrAnamAdult extends ConsumerStatefulWidget {
+  const HcTrAnamAdult({Key? key}) : super(key: key);
+
+  @override
+  _HcTrAnamAdultState createState() => _HcTrAnamAdultState();
+}
+
+class _HcTrAnamAdultState extends ConsumerState<HcTrAnamAdult> {
+  late TextEditingController fechaEntrevistaController;
+  late TextEditingController nombreCompletoController;
+  late TextEditingController quePreparaController;
+  late TextEditingController quePorcionConsumeController;
+  late TextEditingController cuantoPesoHaPerdidoController;
+  late TextEditingController queTipoDeAlimentoController;
+  late TextEditingController queTipoDeLiquidoConsumeHabitualmenteController;
+  late TextEditingController cuantoLiquidoConsumeAlDiaController;
+  late TextEditingController conQueFrecuenciaController;
+  late TextEditingController conQueFrecuenciaPresentoNeumoniaController;
+  late TextEditingController conQueAlimentosLiquidosMedicamentosController;
+  late TextEditingController cuantoTiempoController;
+  late TextEditingController queOtraActividadController;
+  late TextEditingController porQueNoCuentaConTodasSusPiezasDentalesController;
+  late TextEditingController conQueFrecuenciaSeLavaLosDientesController;
+  late TextEditingController conQueFrecuenciaAsisteAControlesDentalesController;
+  late TextEditingController queMolestiaODolorController;
+
+  @override
+  void initState() {
+    super.initState();
+    fechaEntrevistaController = TextEditingController();
+    nombreCompletoController = TextEditingController();
+    quePreparaController = TextEditingController();
+    quePorcionConsumeController = TextEditingController();
+    cuantoPesoHaPerdidoController = TextEditingController();
+    queTipoDeAlimentoController = TextEditingController();
+    queTipoDeLiquidoConsumeHabitualmenteController = TextEditingController();
+    cuantoLiquidoConsumeAlDiaController = TextEditingController();
+    conQueFrecuenciaController = TextEditingController();
+    conQueFrecuenciaPresentoNeumoniaController = TextEditingController();
+    conQueAlimentosLiquidosMedicamentosController = TextEditingController();
+    cuantoTiempoController = TextEditingController();
+    queOtraActividadController = TextEditingController();
+    porQueNoCuentaConTodasSusPiezasDentalesController = TextEditingController();
+    conQueFrecuenciaSeLavaLosDientesController = TextEditingController();
+    conQueFrecuenciaAsisteAControlesDentalesController =
+        TextEditingController();
+    queMolestiaODolorController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    fechaEntrevistaController.dispose();
+    nombreCompletoController.dispose();
+    quePreparaController.dispose();
+    quePorcionConsumeController.dispose();
+    cuantoPesoHaPerdidoController.dispose();
+    queTipoDeAlimentoController.dispose();
+    queTipoDeLiquidoConsumeHabitualmenteController.dispose();
+    cuantoLiquidoConsumeAlDiaController.dispose();
+    conQueFrecuenciaController.dispose();
+    conQueFrecuenciaPresentoNeumoniaController.dispose();
+    conQueAlimentosLiquidosMedicamentosController.dispose();
+    cuantoTiempoController.dispose();
+    queOtraActividadController.dispose();
+    porQueNoCuentaConTodasSusPiezasDentalesController.dispose();
+    conQueFrecuenciaSeLavaLosDientesController.dispose();
+    conQueFrecuenciaAsisteAControlesDentalesController.dispose();
+    queMolestiaODolorController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final hcState = ref.watch(hcAdultFormProvider);
+    final hcNotifier = ref.read(hcAdultFormProvider.notifier);
+
+    fechaEntrevistaController.text = hcState.createHcAdult.fechaEvalucion;
+    nombreCompletoController.text = hcState.createHcAdult.nombreCompleto;
+    quePreparaController.text =
+        hcState.createHcAdult.independenciaAutonomia.quePrepara;
+    quePorcionConsumeController.text =
+        hcState.createHcAdult.eficiencia.quePorcionConsume;
+    cuantoPesoHaPerdidoController.text =
+        hcState.createHcAdult.eficiencia.cuantoPesoHaPerdido.toString();
+    queTipoDeAlimentoController.text =
+        hcState.createHcAdult.eficiencia.queTipoDeAlimento;
+    queTipoDeLiquidoConsumeHabitualmenteController.text =
+        hcState.createHcAdult.eficiencia.queTipoDeLiquidoConsumeHabitualmente;
+    cuantoLiquidoConsumeAlDiaController.text =
+        hcState.createHcAdult.eficiencia.cuantoLiquidoConsumeAlDia;
+    conQueFrecuenciaController.text =
+        hcState.createHcAdult.seguridad.conQueFrecuencia;
+    conQueFrecuenciaPresentoNeumoniaController.text =
+        hcState.createHcAdult.seguridad.conQueFrecuenciaPresentoNeumonia;
+    conQueAlimentosLiquidosMedicamentosController.text =
+        hcState.createHcAdult.seguridad.conQueAlimentosLiquidosMedicamentos;
+    cuantoTiempoController.text =
+        hcState.createHcAdult.procesoDeAlimentacion.cuantoTiempo;
+    queOtraActividadController.text =
+        hcState.createHcAdult.procesoDeAlimentacion.queOtraActividad;
+    conQueFrecuenciaSeLavaLosDientesController.text =
+        hcState.createHcAdult.saludBocal.conQueFrecuenciaSeLavaLosDientes;
+    conQueFrecuenciaAsisteAControlesDentalesController.text = hcState
+        .createHcAdult.saludBocal.conQueFrecuenciaAsisteAControlesDentales;
+    queMolestiaODolorController.text =
+        hcState.createHcAdult.saludBocal.queMolestiaODolor;
+    porQueNoCuentaConTodasSusPiezasDentalesController.text = hcState
+        .createHcAdult.saludBocal.porQueNoCuentaConTodasSusPiezasDentales;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Area de Terapias',
-          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+          'Área de Terapias - Anamnesis Adultos',
+          style: TextStyle(color: Colors.black),
         ),
       ),
       body: Form(
         child: ListView(
           padding: EdgeInsets.all(16.0),
           children: [
-            headerTRWidget(
-              textoDinamico: 'ANAMNESIS ALIMENTARIA ADULTOS',
-            ),
+            headerTRWidget(textoDinamico: 'ANAMNESIS ALIMENTARIA ADULTOS'),
             const SizedBox(height: 20),
-            NavigationButton(
-              navigationRoute: (context) => SearchHcTrAa(),
+            NavigationButton(navigationRoute: (context) => SearchHcTrAa()),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    onChanged: hcNotifier.onCedulaChanged,
+                    decoration:
+                        const InputDecoration(labelText: 'Buscar por cédula'),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    hcNotifier.getPacienteByDni(hcState.cedula);
+                  },
+                  child: const Text('Buscar'),
+                ),
+              ],
             ),
             _buildSection('1.- Antecedentes personales'),
-            _buildFormField({'label': 'Nombre completo'}),
-            _buildFormField({'label': 'Fecha de evaluación (dd/mm/aaaa)'}),
+            _buildFormField(
+              controller: nombreCompletoController,
+              label: 'Nombre completo',
+              onChanged: hcNotifier.setNombreCompleto,
+            ),
+            _buildFormField(
+              label: 'Fecha de evaluación (dd/mm/aaaa)',
+              controller: fechaEntrevistaController,
+              onChanged: hcNotifier.setFechaEvaluacion,
+            ),
             Divider(),
-            const SizedBox(height: 10),
             _buildRadioButtonGroup(
-                "Lateralidad:", ["Diestro", "Zurdo", "Ambidiestro"]),
+              title: "Lateralidad:",
+              options: ["Diestro", "Zurdo", "Ambidiestro"],
+              selectedValue: hcState.createHcAdult.lateralidad,
+              onChanged: hcNotifier.setLateralidad,
+            ),
             Divider(),
-            _buildSection('2 .- Independencia y autonomia'),
-            _buildRadioButtonGroup("¿Se alimenta solo(a) o necesita ayuda?",
-                ["Solo(a)", "Con ayuda parcial", "Con ayuda total"]),
-            _buildRadioButtonGroup("¿Qué tipo de ayuda necesita?", [
-              "Para identificar qué esta comiendo",
-              "Para llevarse la comida a la boca/evitar derrames",
-              "Ninguna"
-            ]),
+            _buildSection('2 .- Independencia y autonomía'),
             _buildRadioButtonGroup(
-                "¿Prepara sus propios alimentos o para alguien más?", [
-              "SI",
-              "NO",
-            ]),
-            _buildFormField({'label': '¿Por qué?'}),
+              title: "¿Se alimenta solo(a) o necesita ayuda?",
+              options: ["Solo(a)", "Con ayuda parcial", "Con ayuda total"],
+              selectedValue: hcState
+                  .createHcAdult.independenciaAutonomia.seAlimentaSoloOConAyuda,
+              onChanged: hcNotifier.setIndepSeAlimentaSoloOConAyuda,
+            ),
             _buildRadioButtonGroup(
-                "¿Decide qué alimentos desea consumir o participar activamente en estas decisiones en el hogar?",
-                [
-                  "SI",
-                  "NO",
-                ]),
+              title: "¿Qué tipo de ayuda necesita?",
+              options: [
+                "Para identificar qué está comiendo",
+                "Para llevarse la comida a la boca/evitar derrames",
+                "Ninguna"
+              ],
+              selectedValue: hcState
+                  .createHcAdult.independenciaAutonomia.queTipoDeAyudaNecesita,
+              onChanged: hcNotifier.setIndepQueTipoDeAyudaNecesita,
+            ),
+            _buildRadioButtonGroupBool(
+              title: "¿Prepara sus propios alimentos?",
+              options: ["SI", "NO"],
+              selectedValue: hcState
+                  .createHcAdult.independenciaAutonomia.preparaSusAlimentos,
+              onChanged: hcNotifier.setIndepPreparaSusAlimentos,
+            ),
+            _buildFormField(
+              label: "¿Por Qué?",
+              controller: quePreparaController,
+              onChanged: hcNotifier.setIndepQuePrepara,
+            ),
+            _buildRadioButtonGroupBool(
+              title:
+                  "¿Decide qué alimentos desea consumir o participar en estas decisiones en el hogar?",
+              options: ["SI", "NO"],
+              selectedValue:
+                  hcState.createHcAdult.independenciaAutonomia.decideQueComer,
+              onChanged: hcNotifier.setIndepDecideQueComer,
+            ),
             Divider(),
             _buildSection('3 .- Eficiencia'),
-            _buildRadioButtonGroup(
-                "¿Consume la totalidad del alimento que se le sirve?", [
-              "SI",
-              "NO",
-            ]),
-            _buildFormField({'label': '¿Qué porción consume?'}),
-            _buildRadioButtonGroup(
-                "¿Ha presentado pérdidas importantes de peso en el último tiempo?",
-                [
-                  "SI",
-                  "NO",
-                ]),
-            _buildFormField({'label': '¿Cuántos kilos?'}),
-            _buildRadioButtonGroup("¿Manifiesta interés por alimnetarse?", [
-              "SI",
-              "NO",
-            ]),
-            _buildRadioButtonGroup(
-                "¿Manifiesta rechazo o preferencia por algún tipo de alimento?",
-                [
-                  "SI",
-                  "NO",
-                ]),
-            _buildFormField({'label': '¿Cuál?'}),
+            _buildRadioButtonGroupBool(
+              title: "¿Consume la totalidad del alimento?",
+              options: ["SI", "NO"],
+              selectedValue: hcState
+                  .createHcAdult.eficiencia.consumeLaTotalidadDeLosAlimentos,
+              onChanged:
+                  hcNotifier.setEficienciaConsumeLaTotalidadDeLosAlimentos,
+            ),
             _buildFormField(
-                {'label': '¿Qué tipo de líquido consume habitualmente?'}),
-            _buildFormField({'label': '¿Cuánto líquido consume al día?'}),
+              label: "¿Qué porción consume?",
+              controller: quePorcionConsumeController,
+              onChanged: hcNotifier.setEficienciaQuePorcionConsume,
+            ),
+            _buildRadioButtonGroupBool(
+              title: "¿Ha presentado pérdidas de peso?",
+              options: ["SI", "NO"],
+              selectedValue: hcState.createHcAdult.eficiencia
+                  .haPresentadoPerdidasImportantesDePesoEnElUltimoTiempo,
+              onChanged: hcNotifier
+                  .setEficienciaHaPresentadoPerdidasImportantesDePesoEnElUltimoTiempo,
+            ),
+            _buildFormField(
+              label: "¿Cuántos kilos?",
+              controller: cuantoPesoHaPerdidoController,
+              onChanged: (value) => hcNotifier.setEficienciaCuantoPesoHaPerdido(
+                  double.tryParse(value) ?? 0),
+            ),
+            _buildRadioButtonGroupBool(
+              title: "¿Manifiesta interés por alimentarse?",
+              options: ["SI", "NO"],
+              selectedValue: hcState
+                  .createHcAdult.eficiencia.manifiestaInteresPorAlimentarse,
+              onChanged:
+                  hcNotifier.setEficienciaManifiestaInteresPorAlimentarse,
+            ),
+            _buildRadioButtonGroupBool(
+              title:
+                  "¿Manifiesta rechazo o preferencia por algún tipo de alimento?",
+              options: ["SI", "NO"],
+              selectedValue: hcState.createHcAdult.eficiencia
+                  .manifiestaRechazoOPreferenciasPorAlgunTipoDeAlimento,
+              onChanged: hcNotifier
+                  .setEficienciaManifiestaRechazoOPreferenciasPorAlgunTipoDeAlimento,
+            ),
+            _buildFormField(
+              label: "¿Cuál?",
+              controller: queTipoDeAlimentoController,
+              onChanged: hcNotifier.setEficienciaQueTipoDeAlimento,
+            ),
+            _buildFormField(
+              label: "¿Qué tipo de líquido consume habitualmente?",
+              controller: queTipoDeLiquidoConsumeHabitualmenteController,
+              onChanged:
+                  hcNotifier.setEficienciaQueTipoDeLiquidoConsumeHabitualmente,
+            ),
+            _buildFormField(
+              label: "¿Cuánto líquido consume al día?",
+              controller: cuantoLiquidoConsumeAlDiaController,
+              onChanged: hcNotifier.setEficienciaCuantoLiquidoConsumeAlDia,
+            ),
             Divider(),
             _buildSection('4 .- Seguridad'),
-            _buildRadioButtonGroup("¿Se atora con su saliva?", [
-              "SI",
-              "NO",
-            ]),
-            _buildFormField({'label': '¿Con qué frecuencia?'}),
-            _buildRadioButtonGroup(
-                "¿Tiene tos o ahogos cuando se alimenta o consume sus medicamentos?",
-                [
-                  "SI",
-                  "NO",
-                ]),
+            _buildRadioButtonGroupBool(
+              title: "¿Se atora con su saliva?",
+              options: ["SI", "NO"],
+              selectedValue: hcState.createHcAdult.seguridad.seAtoraConSuSaliva,
+              onChanged: hcNotifier.setSeguridadSeAtoraConSuSaliva,
+            ),
             _buildFormField(
-                {'label': '¿Con qué alimento/liquido/medicamento?'}),
-            _buildRadioButtonGroup(
-                "¿Presenta alguna dificultad para tomar líquidos de un vaso?", [
-              "SI",
-              "NO",
-            ]),
-            _buildRadioButtonGroup(
-                "¿Presenta dificultad con las sopas o los granos pequeños como el arroz?",
-                [
-                  "SI",
-                  "NO",
-                ]),
-            _buildRadioButtonGroup("¿Ha presentado neumonías?", [
-              "SI",
-              "NO",
-            ]),
-            _buildFormField({'label': '¿Con qué frecuencia?'}),
-            _buildRadioButtonGroup(
-                "¿Se queda con restos de alimento en la boca luego de alimentarse?",
-                [
-                  "SI",
-                  "NO",
-                ]),
-            _buildRadioButtonGroup(
-                "¿Siente que el alimento se va hacia su nariz?", [
-              "SI",
-              "NO",
-            ]),
+              label: "¿Con qué frecuencia?",
+              controller: conQueFrecuenciaController,
+              onChanged: hcNotifier.setSeguridadConQueFrecuencia,
+            ),
+            _buildRadioButtonGroupBool(
+              title:
+                  "¿Tiene tos o ahogos cuando se alimenta o consume sus medicamentos?",
+              options: ["SI", "NO"],
+              selectedValue: hcState.createHcAdult.seguridad
+                  .tieneTosOAhogosCuandoSeAlimentaOConsumeMedicamentos,
+              onChanged: hcNotifier
+                  .setSeguridadTieneTosOAhogosCuandoSeAlimentaOConsumeMedicamentos,
+            ),
+            _buildFormField(
+              label: "¿Con qué alimento/liquido/medicamento?",
+              controller: conQueAlimentosLiquidosMedicamentosController,
+              onChanged:
+                  hcNotifier.setSeguridadConQueAlimentosLiquidosMedicamentos,
+            ),
+            _buildRadioButtonGroupBool(
+                title:
+                    "¿Presenta alguna dificultad para tomar líquidos de un vaso?",
+                options: ["SI", "NO"],
+                selectedValue: hcState.createHcAdult.seguridad
+                    .presentaAlgunaDificultadParaTomarLiquidosDeUnVaso,
+                onChanged: hcNotifier
+                    .setSeguridadPresentaAlgunaDificultadParaTomarLiquidosDeUnVaso),
+            _buildRadioButtonGroupBool(
+                title:
+                    "¿Presenta dificultad con las sopas o los granos pequeños como el arroz?",
+                options: ["SI", "NO"],
+                selectedValue: hcState.createHcAdult.seguridad
+                    .presentaDificultadConSopasOLosGranosPequenosComoArroz,
+                onChanged: hcNotifier
+                    .setSeguridadPresentaDificultadConSopasOLosGranosPequenosComoArroz),
+            _buildRadioButtonGroupBool(
+                title: "¿Ha presentado neumonías?",
+                options: ["SI", "NO"],
+                selectedValue:
+                    hcState.createHcAdult.seguridad.haPresentadoNeumonias,
+                onChanged: hcNotifier.setSeguridadHaPresentadoNeumonias),
+            _buildFormField(
+              label: "¿Con qué frecuencia?",
+              controller: conQueFrecuenciaPresentoNeumoniaController,
+              onChanged: hcNotifier.setSeguridadConQueFrecuencia,
+            ),
+            _buildRadioButtonGroupBool(
+                title:
+                    "¿Se queda con restos de alimento en la boca luego de alimentarse?",
+                options: ["SI", "NO"],
+                selectedValue: hcState.createHcAdult.seguridad
+                    .seQuedaConRestosDeAlimentosEnLaBocaLuegoDeAlimentarse,
+                onChanged: hcNotifier
+                    .setSeguridadSeQuedaConRestosDeAlimentosEnLaBocaLuegoDeAlimentarse),
+            _buildRadioButtonGroupBool(
+                title: "¿Siente que el alimento se va hacia su nariz?",
+                options: ["SI", "NO"],
+                selectedValue: hcState.createHcAdult.seguridad
+                    .sienteQueElAlimentoSeVaHaciaSuNariz,
+                onChanged:
+                    hcNotifier.setSeguridadSienteQueElAlimentoSeVaHaciaSuNariz),
             Divider(),
-            _buildSection('5 .- Proceso de alimentación'),
-            _buildRadioButtonGroup(
-              '¿Se demora más tiempo que el resto de la familia?',
-              ['SI', 'NO'],
+            _buildSection('5 .- Proceso de Alimentación'),
+            _buildRadioButtonGroupBool(
+                title: "¿Se demora más tiempo que el resto de la familia?",
+                options: ["SI", "NO"],
+                selectedValue: hcState.createHcAdult.procesoDeAlimentacion
+                    .seDemoraMasTiempoQueElRestoDeLaFamiliaEnComer,
+                onChanged: hcNotifier
+                    .setProcesoDeAlimentacionSeDemoraMasTiempoQueElRestoDeLaFamiliaEnComer),
+            _buildFormField(
+                label: "¿Cuánto?",
+                controller: cuantoTiempoController,
+                onChanged: hcNotifier.setProcesoDeAlimentacionCuantoTiempo),
+            _buildRadioButtonGroupBool(
+              title: "¿Cree usted que come muy rápido?",
+              options: ["SI", "NO"],
+              selectedValue: hcState.createHcAdult.procesoDeAlimentacion
+                  .creeUstedQueComeMuyRapido,
+              onChanged:
+                  hcNotifier.setProcesoDeAlimentacionCreeUstedQueComeMuyRapido,
             ),
-            _buildFormField({'label': '¿Cuánto?'}),
-            _buildRadioButtonGroup(
-              '¿Cree usted que come muy rápido?',
-              ['SI', 'NO'],
+            _buildRadioButtonGroupBool(
+                title: "¿Suele realizar alguna otra actividad mientras come?",
+                options: ["SI", "NO"],
+                selectedValue: hcState.createHcAdult.procesoDeAlimentacion
+                    .sueleRealizarAlgunaOtraActividadMientrasCome,
+                onChanged: hcNotifier
+                    .setProcesoDeAlimentacionSueleRealizarAlgunaOtraActividadMientrasCome),
+            _buildFormField(
+              label: "¿Cuál(es)?",
+              controller: queOtraActividadController,
+              onChanged: hcNotifier.setProcesoDeAlimentacionQueOtraActividad,
             ),
-            _buildRadioButtonGroup(
-              '¿Suele realizar alguna otra actividad mientras come?',
-              ['SI', 'NO'],
-            ),
-            _buildFormField({'label': '¿Cuál (es)?'}),
             Divider(),
-            _buildSection('6 .- Salud bocal'),
-            _buildRadioButtonGroup(
-              '¿Cuenta con todas sus piezas dentarias/dientes?',
-              ['SI', 'NO'],
+            _buildSection('6 .- Salud Bucal'),
+            _buildRadioButtonGroupBool(
+              title: "¿Cuenta con todas sus piezas dentarias/dientes?",
+              options: ["SI", "NO"],
+              selectedValue: hcState
+                  .createHcAdult.saludBocal.cuentaConTodasSusPiezasDentales,
+              onChanged:
+                  hcNotifier.setSaludBocalCuentaConTodasSusPiezasDentales,
             ),
-            _buildFormField({'label': '¿Por qué?'}),
-            _buildRadioButtonGroup(
-              '¿Utiliza placa dental?',
-              ['SI', 'NO'],
+            _buildFormField(
+              label: "¿Por qué?",
+              controller: porQueNoCuentaConTodasSusPiezasDentalesController,
+              onChanged: hcNotifier
+                  .setSaludBocalPorQueNoCuentaConTodasSusPiezasDentales,
             ),
-            _buildRadioButtonGroup(
-              '¿Se realiza aseo bucal después de cada comida?',
-              ['SI', 'NO'],
+            _buildRadioButtonGroupBool(
+              title: "¿Utiliza placa dental?",
+              options: ["SI", "NO"],
+              selectedValue:
+                  hcState.createHcAdult.saludBocal.utilizaPlacaDental,
+              onChanged: hcNotifier.setSaludBocalUtilizaPlacaDental,
             ),
-            _buildFormField({
-              'label':
-                  '¿Con qué frecuencia se lava los dientes/lava su prótesis?'
-            }),
-            _buildRadioButtonGroup(
-              '¿Asiste regularmente a controles dentales?',
-              ['SI', 'NO'],
+            _buildRadioButtonGroupBool(
+              title: "¿Se realiza aseo bucal después de cada comida?",
+              options: ["SI", "NO"],
+              selectedValue: hcState.createHcAdult.saludBocal
+                  .seRealizaAseoBucalDespuesDeCadaComida,
+              onChanged:
+                  hcNotifier.setSaludBocalSeRealizaAseoBucalDespuesDeCadaComida,
             ),
-            _buildFormField({'label': '¿Con qué frecuencia?'}),
-            _buildRadioButtonGroup(
-              '¿Tiene alguna molestia o dolor dentro de su boca (dientes, encías, paladar, lengua)?',
-              ['SI', 'NO'],
+            _buildFormField(
+              label:
+                  "¿Con qué frecuencia se lava los dientes/lava su prótesis?",
+              controller: conQueFrecuenciaSeLavaLosDientesController,
+              onChanged:
+                  hcNotifier.setSaludBocalConQueFrecuenciaSeLavaLosDientes,
             ),
-            _buildFormField({'label': '¿Cúal?'}),
+            _buildRadioButtonGroupBool(
+              title: "¿Asiste regularmente a controles dentales?",
+              options: ["SI", "NO"],
+              selectedValue: hcState.createHcAdult.saludBocal
+                  .asisteRegularmenteAControlesDentales,
+              onChanged:
+                  hcNotifier.setSaludBocalAsisteRegularmenteAControlesDentales,
+            ),
+            _buildFormField(
+              label: "¿Con qué frecuencia?",
+              controller: conQueFrecuenciaAsisteAControlesDentalesController,
+              onChanged: hcNotifier
+                  .setSaludBocalConQueFrecuenciaAsisteAControlesDentales,
+            ),
+            _buildRadioButtonGroupBool(
+              title:
+                  "¿Tiene alguna molestia o dolor dentro de su boca (dientes, encias, paladar, lengua)?",
+              options: ["SI", "NO"],
+              selectedValue: hcState.createHcAdult.saludBocal
+                  .tieneAlgunaMolestiaODolorDentroDeSuBoca,
+              onChanged: hcNotifier
+                  .setSaludBocalTieneAlgunaMolestiaODolorDentroDeSuBoca,
+            ),
+            _buildFormField(
+              label: "¿Cuál?",
+              controller: queMolestiaODolorController,
+              onChanged: hcNotifier.setSaludBocalQueMolestiaODolor,
+            ),
+            Divider(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Acción al guardar
+          hcNotifier.onCreateHcGeneral();
         },
         child: const Icon(Icons.save),
       ),
     );
   }
 
-//WIDGETS DE LA PAGINA
+  // 🔹 Función para construir una sección con título
   Widget _buildSection(String title) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 9.0),
-      child: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Text(
+        title,
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
     );
   }
 
-  Widget _buildFormField(Map<String, dynamic> field) {
+  // 🔹 Función para construir campos de formulario con `onChanged`
+  Widget _buildFormField({
+    required String label,
+    required TextEditingController controller,
+    required Function(String) onChanged,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
+        controller: controller,
+        onChanged: onChanged,
         decoration: InputDecoration(
-          labelText: field['label'],
+          labelText: label,
           filled: true,
           fillColor: Colors.grey[200],
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
+          errorStyle: const TextStyle(color: Colors.red),
         ),
-        keyboardType: TextInputType.text,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Por favor complete este campo';
-          }
-          return null;
-        },
       ),
     );
   }
 
-  Widget _buildRadioButtonGroup(String title, List<String> options) {
+  // 🔹 Función para construir grupos de botones de radio
+  Widget _buildRadioButtonGroupBool({
+    required String title,
+    required List<String> options,
+    required bool? selectedValue,
+    required Function(bool) onChanged,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -219,16 +497,50 @@ class HcTrAnamAdult extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 8.0),
           child: Text(
             title,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16.0,
-            ),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
           ),
         ),
         Wrap(
-          spacing: 20.0, // Espacio horizontal entre opciones
-          runSpacing:
-              10.0, // Espacio vertical cuando se ajusta a la siguiente línea
+          spacing: 20.0,
+          runSpacing: 10.0,
+          alignment: WrapAlignment.start,
+          children: options.map((option) {
+            return Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Radio(
+                  value: option == "SI",
+                  groupValue: selectedValue,
+                  onChanged: (value) => onChanged(value as bool),
+                ),
+                Text(option),
+              ],
+            );
+          }).toList(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRadioButtonGroup({
+    required String title,
+    required List<String> options,
+    required String selectedValue,
+    required Function(String) onChanged,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+          ),
+        ),
+        Wrap(
+          spacing: 20.0,
+          runSpacing: 10.0,
           alignment: WrapAlignment.start,
           children: options.map((option) {
             return Row(
@@ -236,8 +548,8 @@ class HcTrAnamAdult extends StatelessWidget {
               children: [
                 Radio(
                   value: option,
-                  groupValue: null, // Aquí se configurará el valor del grupo
-                  onChanged: (value) {},
+                  groupValue: selectedValue,
+                  onChanged: (value) => onChanged(value as String),
                 ),
                 Text(option),
               ],

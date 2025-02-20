@@ -1,7 +1,7 @@
 -- Merging decision tree log ---
 application
-INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:2:5-33:19
-INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:2:5-33:19
+INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
 MERGED from [androidx.window:window:1.2.0] C:\Users\Patri\.gradle\caches\8.10.2\transforms\34c5db0fa856752d05d87c8edbe89192\transformed\jetified-window-1.2.0\AndroidManifest.xml:22:5-29:19
 MERGED from [androidx.window:window:1.2.0] C:\Users\Patri\.gradle\caches\8.10.2\transforms\34c5db0fa856752d05d87c8edbe89192\transformed\jetified-window-1.2.0\AndroidManifest.xml:22:5-29:19
 MERGED from [androidx.core:core:1.13.1] C:\Users\Patri\.gradle\caches\8.10.2\transforms\ad2b3df54d3079cea81e79983573f45c\transformed\core-1.13.1\AndroidManifest.xml:28:5-89
@@ -15,18 +15,18 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Patri\.gradle\cach
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Patri\.gradle\caches\8.10.2\transforms\aa79da60893212c3efb036b4ab62393e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Patri\.gradle\caches\8.10.2\transforms\aa79da60893212c3efb036b4ab62393e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 	android:extractNativeLibs
-		INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] C:\Users\Patri\.gradle\caches\8.10.2\transforms\ad2b3df54d3079cea81e79983573f45c\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 	android:name
-		INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:1:1-45:12
-MERGED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:1:1-45:12
-INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-MERGED from [:shared_preferences_android] C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+ADDED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:1:1-45:12
+MERGED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:1:1-45:12
+INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+MERGED from [:shared_preferences_android] C:\Users\Patri\Downloads\TesisAPPfinal\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.preference:preference:1.2.1] C:\Users\Patri\.gradle\caches\8.10.2\transforms\68931d6548eaaf8f0311461d1c052d29\transformed\preference-1.2.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\Patri\.gradle\caches\8.10.2\transforms\926d032079596521fb86f09a3cfed5dc\transformed\appcompat-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment-ktx:1.7.1] C:\Users\Patri\.gradle\caches\8.10.2\transforms\44967b7a59f3de33163c5f40e852ff52\transformed\jetified-fragment-ktx-1.7.1\AndroidManifest.xml:2:1-7:12
@@ -80,35 +80,35 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\User
 MERGED from [androidx.print:print:1.0.0] C:\Users\Patri\.gradle\caches\8.10.2\transforms\f04c4c693e77d0c93848255b33d6a299\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\Patri\.gradle\caches\8.10.2\transforms\448ee5279973147aa95e069581c59dfd\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:2:1-7:12
 	package
-		INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:1:11-69
+		ADDED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:1:11-69
 queries
-ADDED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:39:5-44:15
+ADDED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:39:5-44:15
 intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
-ADDED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:40:9-43:18
+ADDED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:40:9-43:18
 action#android.intent.action.PROCESS_TEXT
-ADDED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:41:13-72
+ADDED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:41:13-72
 	android:name
-		ADDED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:41:21-70
+		ADDED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:41:21-70
 data
-ADDED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:42:13-50
+ADDED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:42:13-50
 	android:mimeType
-		ADDED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:42:19-48
+		ADDED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\main\AndroidManifest.xml:42:19-48
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml:6:5-66
+ADDED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml:6:5-66
 	android:name
-		ADDED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml:6:22-64
+		ADDED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml:6:22-64
 uses-sdk
-INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
-INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
-MERGED from [:shared_preferences_android] C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_android] C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
+MERGED from [:shared_preferences_android] C:\Users\Patri\Downloads\TesisAPPfinal\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_android] C:\Users\Patri\Downloads\TesisAPPfinal\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [androidx.preference:preference:1.2.1] C:\Users\Patri\.gradle\caches\8.10.2\transforms\68931d6548eaaf8f0311461d1c052d29\transformed\preference-1.2.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.preference:preference:1.2.1] C:\Users\Patri\.gradle\caches\8.10.2\transforms\68931d6548eaaf8f0311461d1c052d29\transformed\preference-1.2.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\Patri\.gradle\caches\8.10.2\transforms\926d032079596521fb86f09a3cfed5dc\transformed\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -214,9 +214,9 @@ MERGED from [androidx.print:print:1.0.0] C:\Users\Patri\.gradle\caches\8.10.2\tr
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\Patri\.gradle\caches\8.10.2\transforms\448ee5279973147aa95e069581c59dfd\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:5:5-43
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\Patri\.gradle\caches\8.10.2\transforms\448ee5279973147aa95e069581c59dfd\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:5:5-43
 	android:targetSdkVersion
-		INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\Patri\OneDrive\Documentos\GitHub\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\Patri\Downloads\TesisAPPfinal\android\app\src\debug\AndroidManifest.xml
 uses-library#androidx.window.extensions
 ADDED from [androidx.window:window:1.2.0] C:\Users\Patri\.gradle\caches\8.10.2\transforms\34c5db0fa856752d05d87c8edbe89192\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40
 	android:required

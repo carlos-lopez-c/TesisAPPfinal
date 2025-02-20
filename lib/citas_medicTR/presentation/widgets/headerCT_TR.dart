@@ -18,8 +18,8 @@ class HeaderctTrWidget extends StatelessWidget {
         children: [
           Image.asset(
             'assets/imagenes/san-miguel.png',
-            width: 117,
-            height: 125,
+            width: 100,
+            height: 110,
           ),
           const SizedBox(width: 10),
           Column(
