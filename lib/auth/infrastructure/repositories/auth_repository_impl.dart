@@ -18,4 +18,19 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<User> checkAuthStatus(String token) {
     return authDatasource.checkAuthStatus(token);
   }
+
+  @override
+  Future<void> sendCode(String email) {
+    return authDatasource.sendCode(email);
+  }
+
+  @override
+  Future<void> validateCode(String email, String code) {
+    return authDatasource.validateCode(email, code);
+  }
+
+  @override
+  Future<void> resetPassword(String email, String token, String newPassword) {
+    return authDatasource.resetPassword(email, token, newPassword);
+  }
 }

@@ -4,13 +4,12 @@ import 'package:h_c_1/auth/presentation/providers/password_reset_provider.dart';
 import '../Widgets/CustomCard.dart';
 import '/../shared/header.dart';
 
-class ForgotPasswordScreen extends ConsumerWidget {
-  const ForgotPasswordScreen({Key? key}) : super(key: key);
+class VerifyCodeScreen extends ConsumerWidget {
+  const VerifyCodeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final forgotPasswordNotifier = ref.watch(passwordResetProvider.notifier);
-    final forgotPasswordState = ref.watch(passwordResetProvider);
     return CustomCard(
       child: Column(
         children: [
@@ -18,17 +17,17 @@ class ForgotPasswordScreen extends ConsumerWidget {
             imagePath: 'assets/imagenes/san-miguel.png',
             title: 'Fundación de niños especiales',
             subtitle: '"SAN MIGUEL" FUNESAMI',
-            item: 'Recuperar Contraseña',
+            item: 'Verificar Código',
           ),
 
           TextField(
             keyboardType: TextInputType.emailAddress,
-            onChanged: forgotPasswordNotifier.onEmailChanged,
+            onChanged: forgotPasswordNotifier.onCodeChanged,
             decoration: InputDecoration(
-              labelText: 'Correo Electrónico',
+              labelText: 'Código de verificación',
               labelStyle:
                   const TextStyle(color: Colors.lightBlue), // Etiqueta celeste
-              hintText: 'ejemplo@correo.com',
+              hintText: '123456',
               prefixIcon: const Icon(Icons.email,
                   color: Colors.lightBlue), // Ícono celeste
               enabledBorder: const UnderlineInputBorder(
@@ -58,7 +57,7 @@ class ForgotPasswordScreen extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(30), // Bordes redondeados
                 child: ElevatedButton(
                   onPressed: () {
-                    forgotPasswordNotifier.sendCode();
+                    forgotPasswordNotifier.verifyCode();
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: const Color.fromARGB(255, 4, 71, 103),
@@ -76,7 +75,7 @@ class ForgotPasswordScreen extends ConsumerWidget {
                       vertical: 15, // Tamaño interno del botón
                     ),
                   ),
-                  child: const Text('Recuperar Contraseña'),
+                  child: const Text('Validar Código'),
                 ),
               ),
             ],

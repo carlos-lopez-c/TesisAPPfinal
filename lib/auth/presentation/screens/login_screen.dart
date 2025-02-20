@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '/shared/header.dart';
 import '../widgets/login_form.dart';
 import 'forward_password.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -44,12 +45,7 @@ class LoginScreen extends StatelessWidget {
                       TextButton(
                         onPressed: () {
                           // Navega hacia la pantalla de recuperación de contraseña
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ForgotPasswordScreen(),
-                            ),
-                          );
+                          context.push('/forgot-password');
                         },
                         child: const Text('¿Olvidaste tu contraseña?'),
                       ),
