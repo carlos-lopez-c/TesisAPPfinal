@@ -22,13 +22,60 @@ jobs:
           flutter-version: '3.7.0'  # Ajusta la versión según lo que uses
 
       - name: Install dependencies
-        run: flutter pub get
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-11-jdk
+          sudo apt-get install -y lib32stdc++6 lib32z1 lib32z1-dev
+          flutter pub get
+
+      - name: Accept Android licenses
+        run: yes | flutter doctor --android-licenses
 
       - name: Run tests
         run: flutter test
 
       - name: Build APK
-        run: flutter build apk
+        run: flutter build apk --release
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
 
       - name: Deploy (si es necesario)
         run: echo "Desplegando aplicación..."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
