@@ -1,4 +1,3 @@
-
 name: Generar APK para Producción
 on:
   push:
@@ -55,12 +54,12 @@ jobs:
       - name: Generar APK en modo release
         run: flutter build apk --release
         
-      - name: Mover APK a la raíz del repositorio
+      - name: Mover y Commitear APK
         run: |
           mv build/app/outputs/flutter-apk/app-release.apk app-release.apk
           git add app-release.apk
           git commit -m "Generado APK de producción"
-          git push origin production --force
+          git push origin main
           
       - name: Subir APK como artefacto en GitHub Actions
         uses: actions/upload-artifact@v4
