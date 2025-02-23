@@ -70,9 +70,14 @@ jobs:
           git add app-release.apk
           git commit -m "Generado APK de producción"
 
-      - name: Verificar en qué rama estás y hacer `git pull` de `Publish`
+      - name: Verificar en qué rama estás y hacer commit de cambios locales
         run: |
-          git branch # Para ver en qué rama estás
+          git status # Muestra el estado de los archivos
+          git add . # Confirma todos los cambios no confirmados
+          git commit -m "Cambios locales antes de pull" || echo "No hay cambios para confirmar"
+
+      - name: Hacer git pull y actualizar la rama Publish
+        run: |
           git checkout Publish || git checkout -b Publish
           git pull origin Publish --rebase
 
