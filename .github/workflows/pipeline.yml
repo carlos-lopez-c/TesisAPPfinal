@@ -23,15 +23,6 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-      - name: Simulación de SonarQube (Todo OK)
-        run: echo "Simulación de análisis de SonarQube: Código limpio y sin errores."
-
-      - name: Cambiar a la rama production (sin modificar código)
-        run: |
-          git fetch origin production || true
-          git checkout -b production origin/production || git checkout production
-          git reset --hard main  # Solo sincroniza, no sube cambios de código
-
       - name: Instalar Flutter
         uses: subosito/flutter-action@v2
         with:
