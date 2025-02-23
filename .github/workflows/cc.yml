@@ -35,11 +35,15 @@ jobs:
       - name: Instalar dependencias de Flutter
         run: flutter pub get
 
-      - name: Verificar si el archivo CustomCard.dart existe
+      - name: Verificar si la carpeta y el archivo CustomCard.dart existen
         run: |
-          if [ ! -f lib/auth/presentation/Widgets/CustomCard.dart ]; then
-            echo "El archivo CustomCard.dart no se encuentra en la ruta especificada. Se generará un archivo de marcador.";
-            echo "// Marker file for CustomCard.dart" > lib/auth/presentation/Widgets/CustomCard.dart;
+          if [ ! -d lib/temp ]; then
+            echo "La carpeta temp no existe. Se creará.";
+            mkdir -p lib/temp;
+          fi
+          if [ ! -f lib/temp/CustomCard.dart ]; then
+            echo "El archivo CustomCard.dart no se encuentra en la ruta especificada. Se generará un archivo de marcador en lib/temp.";
+            echo "// Marker file for CustomCard.dart" > lib/temp/CustomCard.dart;
           else
             echo "El archivo CustomCard.dart está presente.";
           fi
