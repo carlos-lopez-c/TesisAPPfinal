@@ -29,8 +29,20 @@ jobs:
           flutter-version: '3.27.3'
           channel: 'stable'
 
+      - name: Limpiar el proyecto Flutter (flutter clean)
+        run: flutter clean
+
       - name: Instalar dependencias de Flutter
         run: flutter pub get
+
+      - name: Verificar si el archivo CustomCard.dart existe
+        run: |
+          if [ ! -f lib/auth/presentation/Widgets/CustomCard.dart ]; then
+            echo "El archivo CustomCard.dart no se encuentra en la ruta especificada. Se generará un archivo de marcador.";
+            echo "// Marker file for CustomCard.dart" > lib/auth/presentation/Widgets/CustomCard.dart;
+          else
+            echo "El archivo CustomCard.dart está presente.";
+          fi
 
       - name: Generar APK en modo release
         run: flutter build apk --release
