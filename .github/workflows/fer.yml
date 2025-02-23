@@ -1,3 +1,4 @@
+
 name: Generar APK para Producción
 on:
   push:
@@ -33,10 +34,10 @@ jobs:
       - name: Instalar dependencias de Flutter
         run: flutter pub get
         
-      - name: Crear carpeta build y CustomCard.dart
+      - name: Crear CustomCard.dart en la ubicación correcta
         run: |
-          mkdir -p build
-          cat > build/CustomCard.dart << 'EOF'
+          mkdir -p lib/auth/presentation/Widgets
+          cat > lib/auth/presentation/Widgets/CustomCard.dart << 'EOF'
           import 'package:flutter/material.dart';
           
           class CustomCard extends StatelessWidget {
@@ -66,4 +67,3 @@ jobs:
         with:
           name: APK de Producción
           path: app-release.apk
-
