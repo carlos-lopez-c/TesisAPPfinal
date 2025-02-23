@@ -1,5 +1,4 @@
 name: Generar APK para Producción
-
 on:
   push:
     branches:
@@ -7,7 +6,6 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   build_apk_production:
     name: Generar y Subir APK a producción
@@ -17,44 +15,51 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+          
       - name: Configurar usuario de GitHub Actions
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-
+          
       - name: Instalar Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.27.3'
           channel: 'stable'
-
+          
       - name: Limpiar el proyecto Flutter (flutter clean)
         run: flutter clean
-
+        
       - name: Instalar dependencias de Flutter
         run: flutter pub get
-
-      - name: Verificar si la carpeta y el archivo CustomCard.dart existen
+        
+      - name: Crear carpeta build y CustomCard.dart
         run: |
-          if [ ! -f build/CustomCard.dart ]; then
-            echo "El archivo CustomCard.dart no se encuentra en la carpeta build. Se generará un archivo de marcador en build.";
-            echo "// Marker file for CustomCard.dart" > build/CustomCard.dart;
-            echo "import 'package:flutter/material.dart';" >> build/CustomCard.dart;
-            echo "class CustomCard extends StatelessWidget { final Widget child; const CustomCard({Key? key, required this.child}) : super(key: key); @override Widget build(BuildContext context) { return Card(child: child); } }" >> build/CustomCard.dart;
-          else
-            echo "El archivo CustomCard.dart ya está presente en build.";
-          fi
-
+          mkdir -p build
+          cat > build/CustomCard.dart << 'EOF'
+          import 'package:flutter/material.dart';
+          
+          class CustomCard extends StatelessWidget {
+            final Widget child;
+            
+            const CustomCard({Key? key, required this.child}) : super(key: key);
+            
+            @override
+            Widget build(BuildContext context) {
+              return Card(child: child);
+            }
+          }
+          EOF
+          
       - name: Generar APK en modo release
         run: flutter build apk --release
-
+        
       - name: Mover APK a la raíz del repositorio
         run: |
           mv build/app/outputs/flutter-apk/app-release.apk app-release.apk
           git add app-release.apk
           git commit -m "Generado APK de producción"
-          git push origin production --force  # Envia el APK sin tocar el código de la rama
+          git push origin production --force
           
       - name: Subir APK como artefacto en GitHub Actions
         uses: actions/upload-artifact@v4
