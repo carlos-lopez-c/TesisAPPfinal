@@ -76,9 +76,9 @@ jobs:
           git pull --rebase
           git stash pop || echo "No hay cambios para aplicar"
 
-      - name: Subir cambios a GitHub
+      - name: Subir cambios a la rama Publish
         run: |
-          git push origin main
+          git push origin Publish
 
       - name: Subir APK como artefacto en GitHub Actions
         uses: actions/upload-artifact@v4
